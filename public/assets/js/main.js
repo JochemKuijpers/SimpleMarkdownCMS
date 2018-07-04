@@ -160,7 +160,7 @@ function loadPage(targetElement, pageName, redirect) {
     if (cached !== "") {
         setHtml(targetElement, cached);
     } else {
-        document.getElementById("spinner").style.display = "block";
+        document.getElementById(CONFIG.IDS.LOADING_ID).style.display = "block";
     }
 
     if (loadingPageXhr) {
@@ -169,7 +169,7 @@ function loadPage(targetElement, pageName, redirect) {
     loadingPageXhr = getTextFile(
         CONFIG.BASE_URL + CONFIG.PAGES.PATH + pageName + ".md",
         function(status, response) {
-            document.getElementById("spinner").style.display = "none";
+            document.getElementById(CONFIG.IDS.LOADING_ID).style.display = "none";
             var html = "";
             if (status === 200) {
                 html = parseMarkdown(response);
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadMenu(document.getElementById(CONFIG.IDS.MENU_ID));
     var page = window.location.pathname;
     if (page === "" || page === "/") {
-        page = CONFIG.INDEX_PAGE;
+        page = CONFIG.PAGES.INDEX_PAGE;
     }
     loadPage(document.getElementById(CONFIG.IDS.CONTENT_ID), page, false);
 });
