@@ -1,0 +1,47 @@
+/* minimal styling for readability and presentation */
+body {
+    font-size: 105%;
+    font-family: sans-serif;
+    line-height: 1.25em;
+    width: 600px;
+    margin: 2em auto;
+}
+h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    line-height: 1em;
+}
+pre {
+    max-height: 400px;
+    overflow: auto;
+}
+
+h1.highlight, h2.highlight, h3.highlight, h4.highlight, h5.highlight, h6.highlight {
+    color: blue;
+}
+
+h1:hover > a.anchor, h2:hover > a.anchor, h3:hover > a.anchor, h4:hover > a.anchor, h5:hover > a.anchor, h6:hover > a.anchor, a.anchor:hover {
+    display: inline-block;
+}
+
+a.anchor {
+    display: none;
+    position: absolute;
+    font-weight: normal;
+    text-decoration: none;
+    left: -1em;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+}
+
+a.anchor::before {
+    content: "#";
+}
+
+span.github {
+    display: inline-block;
+    padding-right: 1.25em;
+    background: transparent url("../img/github-icon.png") no-repeat right center;
+    background-size: 1em 1em;
+    text-decoration: underline;
+}
