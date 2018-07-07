@@ -145,8 +145,10 @@ function sanitizePageName(name) {
 var loadingPageXhr = null;
 var htmlCache = new HtmlCache(16);
 function loadPage(targetElement, pageName, redirect) {
+    if (!pageName || pageName === "/") {
+        pageName = CONFIG.PAGES.INDEX_PAGE;
+    }
     pageName = sanitizePageName(pageName);
-    if (pageName === "") { return false; }
     redirect = redirect !== false;
 
     if (window.location.pathname !== CONFIG.BASE_URL + pageName + ".html") {
@@ -258,13 +260,9 @@ function highlightElement(el) {
 
 document.addEventListener("DOMContentLoaded", function() {
     loadMenu(document.getElementById(CONFIG.IDS.MENU_ID));
-    var page = window.location.pathname;
-    if (page === "" || page === "/") {
-        page = CONFIG.PAGES.INDEX_PAGE;
-    }
-    loadPage(document.getElementById(CONFIG.IDS.CONTENT_ID), page, false);
+    loadPage(document.getElementById(CONFIG.IDS.CONTENT_ID), window.location.pathname, false);
 });
 
 window.onpopstate = function(event) {
-    loadPage(document.getElementById(CONFIG.IDS.CONTENT_ID), event.state || CONFIG.INDEX_PAGE, false);
+    loadPage(document.getElementById(CONFIG.IDS.CONTENT_ID), event.state, false);
 };
